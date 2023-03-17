@@ -69,30 +69,11 @@ function saveBank() {
         bank = prompt("Ingrese su Banco (BBVA - Supervielle - BNA)")
         
         searchBank = bancos.find((bnk) => bnk.nombre === bank.toLowerCase())
-        console.log(searchBank)
         if (searchBank) {
             return false
         } else {
             continue;
         }
-
-        /*switch (bank.toLowerCase()) {
-            case "bbva":
-                bank = "Banco BBVA"
-                interes = 0.3
-                return false
-            case "supervielle":
-                bank = "Banco Supervielle"
-                interes = 0.4
-                return false
-            case "bna":
-                bank = "Banco Nación"
-                interes = 0.8
-                return false
-            default:
-                alert("No ha ingresado un banco correcto")
-                continue;
-        }*/
     }
 }
 
