@@ -60,9 +60,23 @@ function moneyConvert() {
 }
 
 function saveBank() {
+    const bancos = [
+        {nombre: 'bbva', interes: 0.3},
+        {nombre: 'supervielle', interes: 0.4},
+        {nombre: 'bna', interes: 0.8},
+    ]
     while(true){
-        bank = prompt("Ingrese su Banco (BBVA - Supervielle - BNA")
-        switch (bank.toLowerCase()) {
+        bank = prompt("Ingrese su Banco (BBVA - Supervielle - BNA)")
+        
+        searchBank = bancos.find((bnk) => bnk.nombre === bank.toLowerCase())
+        console.log(searchBank)
+        if (searchBank) {
+            return false
+        } else {
+            continue;
+        }
+
+        /*switch (bank.toLowerCase()) {
             case "bbva":
                 bank = "Banco BBVA"
                 interes = 0.3
@@ -78,7 +92,7 @@ function saveBank() {
             default:
                 alert("No ha ingresado un banco correcto")
                 continue;
-        }
+        }*/
     }
 }
 
@@ -106,10 +120,10 @@ function emularPrestamo(){
     console.log(bank)
     console.log(interes)
     console.log(days)
-    interesesConsolidados = (((( (TNA + interes) / 365 ) * days).toFixed(4)) * 100)
+    interesesConsolidados = (((( (TNA + searchBank.interes) / 365 ) * days).toFixed(4)) * 100)
     capitalFinal = ((interesesConsolidados * dineroPF) / 100)
     capitalFinal = capitalFinal + dineroPF
     console.log(capitalFinal)
     divResultEmulador = document.getElementById("resultEmulador");
-    divResultEmulador.innerHTML = "<h1><a href='#'>" + ClienteWeb.nombre + " " + ClienteWeb.apellido + "</a></h1><p>Su Plazo Fijo emulado a <b>" + days + "</b> días en el <b>" + bank + "</b><br /> le dará como un saldo final la suma de <b>$" + capitalFinal + "</b>.<br /> La información ha sido enviada a su casilla de email: <b>" + ClienteWeb.email + "</b>";
+    divResultEmulador.innerHTML = "<h1><a href='#'>" + ClienteWeb.nombre + " " + ClienteWeb.apellido + "</a></h1><p>Su Plazo Fijo emulado a <b>" + days + "</b> días en el <b>" + searchBank.nombre.toUpperCase() + "</b><br /> le dará como un saldo final la suma de <b>$" + capitalFinal + "</b>.<br /> La información ha sido enviada a su casilla de email: <b>" + ClienteWeb.email + "</b>";
 }
